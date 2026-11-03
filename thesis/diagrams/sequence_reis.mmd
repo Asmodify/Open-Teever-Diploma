@@ -1,0 +1,17 @@
+%% D7 Sequence: рейс start and sign-off (chapter 3)  TODO: exact endpoints from routes/task.js
+sequenceDiagram
+  actor D as Жолооч (апп)
+  participant API as Open Tee API
+  participant DB as PostgreSQL
+  participant A as Диспетчер (админ вэб)
+  D->>API: Даалгаврын заавар, аюулгүй байдлын дүрэм уншсан
+  API->>DB: task_signoffs бичих
+  D->>API: Рейс эхлүүлэх
+  API->>DB: tasks төлөв шинэчлэх, trip_histories
+  API-->>A: Socket.IO мэдэгдэл
+  loop рейсийн үед
+    D->>API: байршил, зураг, пүү
+  end
+  D->>API: Рейс дуусгах
+  API->>DB: төлөв, падаан
+  A->>API: Баталгаажуулах

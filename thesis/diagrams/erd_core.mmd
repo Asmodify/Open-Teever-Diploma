@@ -1,0 +1,25 @@
+%% D6 Core ERD (chapter 3)  DRAFT from table names; verify every relation against db/migrations before rendering
+erDiagram
+  companies ||--o{ users : has
+  companies ||--o{ vehicles : owns
+  companies ||--o{ driver_profiles : employs
+  users ||--o| driver_profiles : "is"
+  companies ||--o{ clients : serves
+  clients ||--o{ tasks : orders
+  tasks }o--|| vehicles : uses
+  tasks }o--|| driver_profiles : "assigned to"
+  tasks ||--o{ task_signoffs : has
+  tasks ||--o{ task_weigh_slips : has
+  tasks ||--o{ fuel_entries : "refuels during"
+  vehicles ||--o| gps_devices : "tracked by"
+  gps_devices ||--o{ location_pings : reports
+  gps_devices ||--o{ fuel_samples : reports
+  vehicles ||--o{ fuel_events : "detected on"
+  fuel_entries }o--o| fuel_events : "matched to"
+  driver_profiles ||--o{ contracts : signs
+  driver_profiles ||--o{ fee_orders : receives
+  driver_profiles ||--o{ shifts : works
+  vehicles ||--o{ maintenance_requests : needs
+  vehicles ||--o{ vehicle_components : has
+  users ||--o{ notifications : receives
+  users ||--o{ audit_logs : creates

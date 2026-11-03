@@ -1,0 +1,38 @@
+# LaTeX build output
+thesis/build/
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+
+# Obsidian per-device state (keep app settings, drop workspace layout)
+vault/.obsidian/workspace.json
+vault/.obsidian/workspace-mobile.json
+vault/.obsidian/cache/
+
+# Node (mermaid-cli)
+node_modules/
+
+# Never commit environment files or data exports
+.env
+.env.*
+exports/
+*.xlsx
+*.sqlite
+*.db
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

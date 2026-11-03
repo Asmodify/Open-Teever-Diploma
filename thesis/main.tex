@@ -1,0 +1,592 @@
+% ============================================================================
+% Дипломын ажил - Тээврийн парк, жолооч, түлшний хяналтын нэгдсэн мэдээллийн систем (Open Teever)
+% ============================================================================
+\documentclass[
+12pt,
+oneside,
+english,
+onehalfspacing,
+nolistspacing,
+headsepline,
+]{MUST-Thesis}
+
+% ============================================================================
+% Packages - XeLaTeX compatible
+% ============================================================================
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{mongolian}
+\setotherlanguage{english}
+% Windows (MiKTeX) has these fonts; Linux CI falls back to metric-compatible open fonts with Cyrillic.
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{TeX Gyre Termes}}
+\IfFontExistsTF{Arial}{\setsansfont{Arial}}{\setsansfont{TeX Gyre Heros}}
+\IfFontExistsTF{Consolas}{\setmonofont{Consolas}}{\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]}
+\usepackage[table]{xcolor}
+\usepackage{rotating}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\setlist{noitemsep}
+\usepackage{caption,longtable,ltcaption}
+\DeclareCaptionJustification{nohyphen}{\hyphenpenalty=10000}
+\captionsetup{justification=nohyphen}
+\captionsetup[table]{skip=6pt}
+\captionsetup[figure]{skip=6pt}
+\usepackage{subcaption}
+% Bibliography: biblatex + biber, numeric, in order of citation (references.bib).
+\usepackage[backend=biber,style=numeric,sorting=none,maxbibnames=6,language=english,autolang=none]{biblatex}
+\addbibresource{references.bib}
+\usepackage{hyperref}
+\usepackage{xurl}
+% Code listings: a slightly smaller monospace so 70-character lines stay inside the margin.
+\usepackage{fancyvrb}
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\small}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{multirow}
+\usepackage{adjustbox}
+\usepackage{pdfpages}
+\usepackage{pdflscape}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,shapes.geometric,shapes,arrows,automata,shadows,fadings}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+% Code identifiers and paths are set in \texttt and the monospace font cannot hyphenate, so long
+% tokens such as postgresql://user:***@db.example.com:5432/opendev ran past the margin and out of table cells. Allow a
+% line break (without a hyphen) after "/", "_", "." and "-" inside every \texttt.
+\ExplSyntaxOn
+\cs_new_protected:Npn \sai_breakable_tt:n #1
+  {
+    \tl_set:Nn \l_tmpa_tl {#1}
+    \tl_replace_all:Nnn \l_tmpa_tl { / } { /\allowbreak }
+    \tl_replace_all:Nnn \l_tmpa_tl { \_ } { \_\allowbreak }
+    \tl_replace_all:Nnn \l_tmpa_tl { . } { .\allowbreak }
+    \tl_replace_all:Nnn \l_tmpa_tl { - } { -\allowbreak }
+    \tl_use:N \l_tmpa_tl
+  }
+\let\saiOrigTexttt\texttt
+\RenewDocumentCommand{\texttt}{m}{\saiOrigTexttt{\sai_breakable_tt:n {#1}}}
+\ExplSyntaxOff
+
+\definecolor{Cover}{RGB}{102,255,255}
+\definecolor{Chapter}{RGB}{255,220,180}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black,
+    unicode=true,
+    breaklinks=true
+}
+
+% Reduce overfull/underfull line warnings in long mixed-language paragraphs.
+\emergencystretch=4em
+\tolerance=3000
+% Let tables and figures float instead of forcing them "here": a forced float that does not fit
+% the remaining page leaves the rest of that page empty.
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.7}
+\setcounter{topnumber}{3}
+\setcounter{totalnumber}{4}
+\Urlmuskip=0mu plus 1mu
+
+
+% ============================================================================
+% Thesis metadata  (TODO: confirm every value with the advisor and the department)
+% ============================================================================
+\thesistitle{Тээврийн парк, жолооч, түлшний хяналтын нэгдсэн мэдээллийн систем (Open Teever)}
+\thesistype{Бакалаврын төгсөлтийн ажил}
+\supervisor{................................}      % TODO: удирдагч (жишээ репод: Магистр Б.Мөнхбуян)
+\reader{................................}          % шүүмжлэгч
+\advisor{................................}         % зөвлөх (байхгүй бол хоосон үлдээнэ)
+\degreeind{D061303}
+\degree{Мэдээллийн систем}
+\authorshort{Ө.Хүслэн}
+\authorlong{Ө.Хүслэн}
+\addresses{B221930045}                              % TODO: оюутны код
+\subject{Мэдээллийн технологи}
+\keywords{fleet management, GPS telematics, fuel monitoring, Node.js, Next.js, Flutter, PostgreSQL, DAN}
+\university{Шинжлэх ухаан технологийн их сургууль}
+\faculty{Мэдээлэл холбооны технологийн сургууль}
+\department{Мэдээллийн технологийн тэнхим}
+\deptchair{................................}
+\group{}
+\newcommand{\thesissubtitle}{API, админ вэб, жолоочийн апп болон GPS мэдрэгчид суурилсан түлшний алдагдал илрүүлэх модулийн хөгжүүлэлт}
+\newcommand{\thesisyear}{2027}                      % TODO: хамгаалах он
+\newcommand{\authorshipname}{Зохиогч эрхийн хамгаалал}
+\newcommand{\acknowledgementname}{Талархал}
+\newcommand{\abbrevname}{Товчилсон үгс}
+
+\newcommand{\coverlogo}{%
+    \includegraphics[height=4.8cm]{MUST_logo.png}%
+}
+
+
+% ============================================================================
+% Begin Document
+% ============================================================================
+\begin{document}
+\selectlanguage{mongolian}
+\hypersetup{pageanchor=false}
+\frontmatter
+\pagenumbering{Roman}
+\pagestyle{plain}
+
+% ============================================================================
+% Title Page
+% ============================================================================
+\begin{titlepage}
+    \thispagestyle{empty}
+    \pagecolor{Cover}
+    \centering
+
+    \vspace*{0.8cm}
+
+    {\Large\scshape \univname \par}
+    \vspace{0.45cm}
+    {\Large\scshape \facname \par}
+    \vspace{0.2cm}
+    {\Large\scshape \deptname \par}
+
+    \vspace{1.4cm}
+
+    \coverlogo
+
+    \vspace{1.05cm}
+
+    \hfill {\Large \shortname \par}
+
+    \vspace{1cm}
+
+    {\fontsize{24}{28}\selectfont\bfseries \ttitle \par}
+    \vspace{0.35cm}
+    {\large \thesissubtitle \par}
+
+    \vspace{1.15cm}
+
+    {\Large\scshape \thesisname \par}
+
+    \vfill
+
+    {\Large Улаанбаатар хот \par}
+    {\Large \thesisyear~он \par}
+\end{titlepage}
+\nopagecolor
+
+\begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+
+    {\Large\scshape \univname \par}
+    \vspace{0.35cm}
+    {\Large\scshape \facname \par}
+    \vspace{0.35cm}
+    {\large\scshape \deptname \par}
+
+    \vspace{1.8cm}
+    {\Large\bfseries \ttitle \par}
+    \vspace{0.35cm}
+    {\large \thesissubtitle \par}
+
+    \vspace{1.4cm}
+    \begin{tabular}{p{5cm}p{8cm}}
+        Ажлын төрөл: & \thesisname \\
+        Оюутан: & \longname \\
+        Мэргэжлийн индекс: & \degreeid \\
+        Мэргэжил: & \degreename \\
+        Удирдагч: & \supname \\
+        Зөвлөгч: & \advicename \\
+        Гүйцэтгэгч: & \shortname, \addressname \\
+    \end{tabular}
+
+    \vfill
+    {\Large Улаанбаатар хот \par}
+    {\Large \thesisyear~он \par}
+\end{titlepage}
+
+\hypersetup{pageanchor=true}
+
+% ============================================================================
+% Work Plan, Assessment Progress, Permission, and Review Pages
+% ============================================================================
+\begin{titlepage}
+    \vspace*{0.5cm}
+    Батлав. \deptname-ийн эрхлэгч:
+    \begin{flushright}
+        \makebox[4cm]{\dotfill} /\chairname/
+    \end{flushright}
+
+    Удирдагч:
+    \begin{flushright}
+        \makebox[4cm]{\dotfill} /\supname/
+    \end{flushright}
+
+    \begin{center}
+        \vspace*{1.5cm}
+        \textbf{\large ТӨГСӨЛТИЙН АЖЛЫН \\ ТӨЛӨВЛӨГӨӨ}\\[0.5cm]
+        \textsc{\large Сэдэв: ``\ttitle''}\\[0.5cm]
+
+        \small
+        \renewcommand{\arraystretch}{1.25}
+        \begin{adjustbox}{max width=\textwidth}
+        \begin{tabular}{|c|L{6.1cm}|c|c|}
+            \hline
+            № & \multicolumn{1}{c|}{Ажлын бүлэг, хэсгийн нэр} & Эзлэх хувь & Дуусах хугацаа \\ \hline
+            1 & Удиртгал, асуудлын тодорхойлолт & 5\% & ........ \\ \hline
+            2 & Онолын хэсэг, хэрэглэгдэх технологи & 20\% & ........ \\ \hline
+            3 & Судалгааны арга зүй, системийн архитектур & 25\% & ........ \\ \hline
+            4 & Системийн хэрэгжилт ба туршилт & 35\% & ........ \\ \hline
+            5 & Үр дүн, дүгнэлт, тайлангийн боловсруулалт & 15\% & ........ \\ \hline
+        \end{tabular}
+        \end{adjustbox}
+        \normalsize
+
+        \vspace{2cm}
+        Төлөвлөгөө боловсруулсан оюутан: \makebox[3cm]{\dotfill} /\shortname/
+    \end{center}
+\end{titlepage}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1.5cm}
+        \textbf{\large ТӨГСӨЛТИЙН АЖЛЫН ЯВЦ}\\[0.5cm]
+
+        \small
+        \renewcommand{\arraystretch}{1.25}
+        \begin{adjustbox}{max width=\textwidth}
+        \begin{tabular}{|c|L{6.1cm}|c|c|}
+            \hline
+            № & \multicolumn{1}{c|}{Хийж гүйцэтгэсэн ажил} & Биелсэн хугацаа & Гарын үсэг \\ \hline
+            1 & Удиртгал, төслийн зорилго ба хүрээ & ........ &  \\ \hline
+            2 & Онолын судалгаа, ижил төстэй системийн харьцуулалт & ........ &  \\ \hline
+            3 & Бизнес процесс, архитектур, өгөгдлийн загвар, алгоритмын боловсруулалт & ........ &  \\ \hline
+            4 & API, админ вэб, жолоочийн апп, түлшний хяналтын хэрэгжилт ба туршилт & ........ &  \\ \hline
+            5 & Үр дүнгийн үнэлгээ, дүгнэлт, тайлангийн эцсийн боловсруулалт & ........ &  \\ \hline
+        \end{tabular}
+        \end{adjustbox}
+        \normalsize
+
+        \vspace{1cm}
+        Ажлын товч дүгнэлт \\[0.5cm]
+        \dotfill \\[0.2cm]
+        \dotfill \\[0.2cm]
+        \dotfill \\[0.2cm]
+        \dotfill \\[0.2cm]
+        \dotfill \\[0.2cm]
+        \dotfill \\[0.5cm]
+        Удирдагч: \makebox[3cm]{\dotfill} /\supname/ \\
+
+        \vspace{1.4cm}
+        \textbf{ЗӨВШӨӨРӨЛ}\\[0.5cm]
+        Оюутан \shortname-ын бичсэн ``\ttitle'' сэдэвт төгсөлтийн ажлыг улсын шалгалтын комисст хамгаалуулахаар тодорхойлов.\\[0.5cm]
+        Салбарын эрхлэгч: \makebox[3cm]{\dotfill} /\chairname/
+    \end{center}
+\end{titlepage}
+
+
+
+
+% ============================================================================
+% Copyright and Declaration
+% ============================================================================
+\begin{declaration}
+\addchaptertocentry{\authorshipname}
+
+\noindent Миний бие \shortname, ``\ttitle'' сэдэвт энэхүү төгсөлтийн ажил нь миний өөрийн бүтээл бөгөөд дараахыг нотолж байна. Үүнд:
+
+\begin{itemize}
+    \item Энэхүү ажлыг боловсролын зэрэг авах зорилгоор бүхэлд нь буюу голлон өөрөө гүйцэтгэсэн.
+    \item Ажлын аль нэг хэсгийг өөр байгууллага, сургуульд өмнө нь зэрэг, мэргэшил авах зорилгоор илгээгээгүй.
+    \item Бусдын хэвлүүлсэн ажил, өгөгдөл, санаа, эх кодоос ашигласан тохиолдолд эх үүсвэрийг тодорхой заасан.
+    \item Судалгааны болон хэрэгжилтийн явцад тусалсан эх үүсвэр, зөвлөгөө, дэмжлэгийг зохих байдлаар дурдсан.
+    \item Хамтарсан ажил ашигласан бол тухайн хувь нэмрийг ялган тодорхойлсон.
+\end{itemize}
+\bigskip
+
+\noindent Гарын үсэг: \rule[-0.5em]{12.7em}{0.5pt}
+\bigskip
+
+\noindent Огноо: \rule[-0.5em]{15em}{0.5pt}
+\end{declaration}
+
+\clearpage
+
+
+% ============================================================================
+% Abstract (Mongolian)   TODO: finish after chapter 5; keep to one page
+% ============================================================================
+\chapter*{Хураангуй}
+\addcontentsline{toc}{chapter}{Хураангуй}
+
+Энэхүү дипломын ажил нь тээврийн байгууллагын жолооч, тээврийн хэрэгсэл, рейс, баримт бичиг, түлшний хяналтыг нэг системд нэгтгэсэн \textbf{Open Teever} мэдээллийн системийн шинжилгээ, зохиомж, хэрэгжилт, үнэлгээг тайлбарлана. Систем нь Node.js/Express дээр суурилсан нэгдсэн API, Next.js админ вэб, Flutter жолоочийн апп, мөн GPS үйлчилгээ үзүүлэгчийн түлшний мэдрэгчийн өгөгдлийг ашиглан түлшний алдагдлыг илрүүлдэг Fuel Tank Warner програмаас бүрдэнэ. Өгөгдлийг Supabase дээрх PostgreSQL өгөгдлийн санд байгууллага тус бүрээр тусгаарлан хадгална.
+
+% TODO: зорилго, арга зүй, үндсэн үр дүн (тоон үзүүлэлттэй), шинэлэг тал, дүгнэлт.
+
+\textbf{Түлхүүр үгс:} тээврийн парк удирдлага, GPS телеметр, түлшний хяналт, олон байгууллагын архитектур, Node.js, Next.js, Flutter, PostgreSQL, ДАН
+
+
+% ============================================================================
+% Acknowledgments
+% ============================================================================
+\begin{acknowledgements}
+\addchaptertocentry{\acknowledgementname}
+
+Энэхүү төгсөлтийн ажлыг гүйцэтгэх явцад судалгааны чиглэл, системийн архитектур, хэрэгжилтийн хүрээг тодорхойлоход зөвлөгөө өгч дэмжсэн удирдагч багш \supname-д гүн талархал илэрхийлье. Мөн суралцах хугацаанд мэдээллийн технологийн онол, практикийн мэдлэг олгож, мэргэжлийн ур чадварыг хөгжүүлэхэд хувь нэмэр оруулсан \facname-ийн багш нартаа талархал илэрхийлж байна.
+
+Судалгаа, хөгжүүлэлтийн явцад дэмжлэг үзүүлсэн гэр бүл, найз нөхөд болон төслийн туршилт, бичиг баримтын боловсруулалтад тусалсан бүх хүнд баярлалаа.
+
+\end{acknowledgements}
+
+
+% ============================================================================
+% Abbreviations   TODO: keep in sync with the text
+% ============================================================================
+\begin{abbreviations}{ll}
+API & Application Programming Interface \\
+BPMN & Business Process Model and Notation \\
+CI & Continuous Integration \\
+CRUD & Create, Read, Update, Delete \\
+CSV & Comma-Separated Values \\
+ERD & Entity-Relationship Diagram \\
+FCM & Firebase Cloud Messaging \\
+GPS & Global Positioning System \\
+HTTP & Hypertext Transfer Protocol \\
+JSON & JavaScript Object Notation \\
+JWT & JSON Web Token \\
+OTP & One-Time Password \\
+ORM & Object-Relational Mapping \\
+REST & Representational State Transfer \\
+SMS & Short Message Service \\
+SQL & Structured Query Language \\
+SSO & Single Sign-On \\
+UI & User Interface \\
+UML & Unified Modeling Language \\
+URL & Uniform Resource Locator \\
+ДАН & Төрийн цахим нэвтрэлтийн нэгдсэн систем (sso.gov.mn) \\
+\end{abbreviations}
+
+
+% ============================================================================
+% Table of Contents
+% ============================================================================
+\tableofcontents
+\clearpage
+\listoffigures
+\clearpage
+\listoftables
+\clearpage
+\mainmatter
+\pagestyle{thesis}
+\myformat
+
+
+% ============================================================================
+% Оршил
+% ============================================================================
+\chapter{Оршил}
+% TODO: 5%; 5-6 хуудас
+
+\section{Судалгааны үндэслэл}
+% TODO: Монголын ачаа тээврийн салбар, Open Development, цаасан болон Excel процесс, GPS порталын тусдаа байдал
+
+\section{Судалгааны зорилго}
+% TODO: таван зорилт (төлөвлөгөөний 2-р хэсэг)
+
+\section{Судалгааны асуулт}
+% TODO: дөрвөн судалгааны асуулт
+
+\section{Судалгааны таамаглал}
+% TODO: телеметрээр баталгаажсан цэнэглэлт илрээгүй алдагдал, диспетчерийн ачааллыг бууруулна
+
+\section{Судалгааны ач холбогдол}
+% TODO: практик, арга зүйн, сургалтын ач холбогдол
+
+\section{Судалгааны хүрээ ба хязгаарлалт}
+% TODO: дөрвөн репозитори, 2026 оны хувилбар; нягтлан бодох бүртгэл, GPS төхөөрөмжийн техник хамаарахгүй
+
+\section{Судалгааны аргачлалын ерөнхий загвар}
+% TODO: шинжилгээ, зохиомж, хэрэгжилт, үнэлгээ
+
+\section{Дипломын ажлын бүтэц}
+% TODO: бүлэг бүрийн нэг догол мөр
+
+% ============================================================================
+% Онолын хэсэг
+% ============================================================================
+\chapter{Онолын хэсэг}
+% TODO: 20%; 15-18 хуудас; эх сурвалж 25-аас доошгүй
+
+\section{Тээврийн парк удирдлага ба телематикийн систем}
+% TODO: fleet management, telematics өгөгдлийн урсгал
+
+\section{GPS түлшний мэдрэгчийн зарчим}
+% TODO: мВ утга, калибровкийн хүснэгт, цалгилт, тогтсон утга
+
+\section{Олон байгууллагын вэб системийн архитектур}
+% TODO: REST, JWT, OTP, Socket.IO, нэг хүсэлт - нэг транзакц, байгууллагаар тусгаарлах
+
+\section{Мобайл аппын архитектур}
+% TODO: Flutter, Riverpod, feature-first бүтэц, push
+
+\section{Цахим баталгаажуулалт ба ДАН}
+% TODO: OAuth 2.0 authorization code, sso.gov.mn, зөвшөөрөлтэй тээврийн хэрэгслийн лавлагаа
+
+\section{SMS нэг удаагийн код}
+% TODO: verify.mn, CallPro
+
+\section{Ижил төстэй системүүдийн харьцуулалт}
+% TODO: GPSBox портал, олон улсын 2-3 платформ, дотоодын шийдлүүд; харьцуулах хүснэгт
+
+\section{Техникийн сорилтууд}
+% TODO: дуудлагын хязгаар, өгөгдлийн цоорхой, мэдрэгчийн гэмтэл, нууц мэдээллийн удирдлага
+
+\section{Бүлгийн дүгнэлт}
+% TODO: 
+
+% ============================================================================
+% Арга зүй
+% ============================================================================
+\chapter{Арга зүй}
+% TODO: 25%; 22-25 хуудас
+
+\section{Бизнес процессын шинжилгээ}
+% TODO: BPMN: захиалга - рейс - хүргэлт - баталгаажуулалт; цэнэглэлт - баримт - GPS шалгалт - дүгнэлт
+
+\section{Хэрэглэгчийн шаардлага ба Use Case}
+% TODO: жолооч, диспетчер, нягтлан, хүний нөөц, superadmin, owner-operator
+
+\section{Системийн архитектур}
+% TODO: бүрэлдэхүүн, өгөгдлийн урсгал, байршуулалтын топологи
+
+\section{Технологийн сонголт}
+% TODO: Node.js/Express, Next.js, Flutter, Supabase Postgres, Socket.IO, Firebase; MongoDB-оос Postgres руу шилжсэн шийдвэрийн хүснэгт
+
+\section{Өгөгдлийн сангийн загвар}
+% TODO: үндсэн ERD, дараа нь 49 хүснэгтийг салбараар
+
+\section{Алгоритмууд}
+% TODO: түлшний алдагдал илрүүлэх, баримт тулгах, scheduler lease, рейсийн дүрэм
+
+\section{UML диаграмууд}
+% TODO: sequence x3, activity, state x2
+
+\section{Туршилтын орчин}
+% TODO: node --test (Postgres), flutter test, warner selftest, CI
+
+% ============================================================================
+% Хэрэгжилт
+% ============================================================================
+\chapter{Хэрэгжилт}
+% TODO: 35%; 22-25 хуудас; нууц утга, харилцагчийн мэдээлэл оруулахгүй
+
+\section{Төслийн бүтэц}
+% TODO: дөрвөн репозитори, хавтас бүрийн үүрэг
+
+\section{Өгөгдлийн сангийн хэрэгжилт}
+% TODO: migration 001-021, requestTransaction, SET LOCAL app.company_id, retention
+
+\section{API хэрэгжилт}
+% TODO: модуль бүрээр: auth/OTP, хэрэглэгч, байгууллага, жолооч, тээврийн хэрэгсэл, рейс/даалгавар, ээлж, tracking, түлш, тайлан, мэдэгдэл, ДАН, аудит
+
+\section{Админ вэбийн хэрэгжилт}
+% TODO: 42 хуудас цэсээр, live map, print, public track, CSP
+
+\section{Жолоочийн аппын хэрэгжилт}
+% TODO: нэвтрэлт, ДАН, рейсийн урсгал, аюулгүй байдлын дүрэм, баримттай цэнэглэлт, пүү, баримт бичиг, push
+
+\section{Fuel Tank Warner хэрэгжилт}
+% TODO: poller, meter, detector, evidence, Excel, Open Tee холболт, cloud хувилбар
+
+\section{Deployment ба CI}
+% TODO: Vultr + PM2, Vercel, Supabase, Firebase, GitHub Actions
+
+\section{Системийн туршилт}
+% TODO: 30 + 10 + 11 тест; test case хүснэгт
+
+% ============================================================================
+% Үр дүн
+% ============================================================================
+\chapter{Үр дүн}
+% TODO: 15% (6-р бүлэгтэй хамт); 10-12 хуудас
+
+\section{Хэрэгжилтийн үр дүн}
+% TODO: үүрэг бүрээр хэрэгжсэн функц, дэлгэцийн зураг
+
+\section{Туршилтын үр дүн}
+% TODO: автомат тест, гараар хийсэн end-to-end шалгалт
+
+\section{Түлшний илрүүлэлтийн үнэлгээ}
+% TODO: өгөгдлийн багц, төрлөөр анхааруулга, баталгаажсан хулгай ба худал дохио, литр, зөрүүтэй баримт
+
+\section{Үйл ажиллагааны үзүүлэлт}
+% TODO: байгууллага, машин, жолооч, рейс, баримт, хэрэглэгч
+
+\section{Хэрэглэгчийн санал}
+% TODO: сонголтоор асуулга
+
+\section{Хязгаарлалт ба эрсдэл}
+% TODO: 
+
+\section{Үр дүнгийн хэлэлцүүлэг}
+% TODO: дөрвөн судалгааны асуултын хариу
+
+% ============================================================================
+% Дүгнэлт
+% ============================================================================
+\chapter{Дүгнэлт}
+% TODO: 3-4 хуудас
+
+\section{Үндсэн үр дүн}
+% TODO: таван зорилтын эсрэг
+
+\section{Шинэлэг тал}
+% TODO: таван шинэлэг тал
+
+\section{Хязгаарлалт}
+% TODO: 
+
+\section{Цаашдын хөгжүүлэлт}
+% TODO: машин бүрийн зарцуулалтын загвар, маршрут, ERP интеграци
+
+\section{Нэгтгэл}
+% TODO: 
+
+
+% ============================================================================
+% References (biblatex; entries in references.bib, cited with \cite{key})
+% ============================================================================
+\defformat
+\printbibliography[heading=bibintoc,title={Ном зүй}]
+
+
+% ============================================================================
+% Appendix
+% ============================================================================
+\appendix
+\chapter{Хавсралт}
+
+\section{Системийн тохиргооны хувьсагчид}
+% TODO: variable NAMES and purposes only, from the .env.example files; never values.
+
+\section{API endpoint-ийн жагсаалт}
+% TODO: 29 route groups under /api/v1, 182 handlers; one longtable per group or one summary table.
+
+\section{Өгөгдлийн сангийн схем}
+% TODO: 49 tables by domain with key columns (from db/migrations).
+
+\section{Ажиллуулах заавар}
+% TODO: API, admin web, driver app, Fuel Tank Warner (from the READMEs).
+
+\section{Эх кодын сонгосон хэсгүүд}
+% TODO: transaction middleware, scheduler lease, detector core, receipt matching.
+
+\section{Байгууллагын зөвшөөрөл}
+% TODO: \includepdf of the signed permission letter.
+
+\end{document}

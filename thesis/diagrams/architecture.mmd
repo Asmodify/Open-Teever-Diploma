@@ -1,0 +1,24 @@
+%% D1 System architecture (chapter 3)
+flowchart LR
+  subgraph clients[Хэрэглэгчийн талын системүүд]
+    APP[Жолоочийн апп<br/>Flutter, Android ба iOS]
+    ADMIN[Админ вэб<br/>Next.js 16, Vercel]
+    FTW[Fuel Tank Warner<br/>Node.js, локал эсвэл cloud]
+  end
+  API[Open Tee API<br/>Node.js, Express, Socket.IO<br/>api.opendevelopment.mn/api/v1]
+  DB[(Supabase PostgreSQL<br/>49 хүснэгт, Storage)]
+  GPS[GPSBox<br/>fms.gpsbox.mn]
+  DAN[ДАН<br/>sso.gov.mn]
+  SMS[verify.mn, CallPro<br/>SMS OTP]
+  FCM[Firebase Cloud Messaging]
+  TG[Telegram бот]
+  APP -- REST, Socket.IO --> API
+  ADMIN -- REST, Socket.IO --> API
+  FTW -- түлшний анхааруулга, баримтын шалгалт --> API
+  API --> DB
+  API -- 30 с тутам --> GPS
+  FTW -- түүх ба шууд өгөгдөл --> GPS
+  API --> DAN
+  API --> SMS
+  API --> FCM --> APP
+  FTW --> TG

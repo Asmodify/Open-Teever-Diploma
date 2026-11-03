@@ -1,0 +1,14 @@
+%% D8 Sequence: refuel receipt reconciliation (chapter 3)
+sequenceDiagram
+  actor D as Жолооч (апп)
+  participant API as Open Tee API
+  participant W as Fuel Tank Warner
+  participant G as GPSBox
+  participant A as Админ вэб
+  D->>API: Цэнэглэлтийн баримт (литр, үнэ, станц, зураг)
+  W->>API: Шинэ баримтууд (минут тутам)
+  W->>G: Түлшний мэдрэгчийн түүх
+  W->>W: Тогтсон утгаар цэнэглэлтийг тулгах
+  W->>API: Танкинд орсон литр, зөрүү, төлөв
+  A->>API: Түлш цэнэглэлт хуудас
+  API-->>A: Баримт бүрийн GPS шалгалт
