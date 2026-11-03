@@ -1,0 +1,13 @@
+%% D9 Sequence: DAN identity verification (chapter 3)  TODO: confirm with routes/dan.js and utils/danConfig.js
+sequenceDiagram
+  actor D as Жолооч (апп)
+  participant API as Open Tee API
+  participant DAN as ДАН sso.gov.mn
+  D->>API: Баталгаажуулалт эхлүүлэх
+  API-->>D: ДАН-ийн зөвшөөрлийн хуудас руу чиглүүлэх
+  D->>DAN: Нэвтрэх, зөвшөөрөл өгөх
+  DAN-->>API: Callback, нэг удаагийн access token
+  API->>DAN: Иргэний мэдээлэл, тээврийн хэрэгслийн лавлагаа
+  DAN-->>API: Баталгаажсан өгөгдөл
+  API->>API: dan_verification_sessions, driver_profiles шинэчлэх
+  API-->>D: Баталгаажсан

@@ -1,0 +1,33 @@
+name: Thesis PDF
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build main.pdf with XeLaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: thesis
+          root_file: main.tex
+          latexmk_use_xelatex: true
+
+      - name: Check the log
+        working-directory: thesis
+        run: |
+          errors=$(grep -c '^!' main.log || true)
+          undefined=$(grep -ci 'undefined' main.log || true)
+          echo "errors=$errors undefined=$undefined"
+          if [ "$errors" != "0" ]; then grep -A3 '^!' main.log; exit 1; fi
+
+      - name: Upload the PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: thesis-pdf
+          path: thesis/main.pdf

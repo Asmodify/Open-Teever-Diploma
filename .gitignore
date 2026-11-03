@@ -1,0 +1,37 @@
+# LaTeX build output
+thesis/build/
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+
+# Obsidian: the repository root is the vault (K, 2026-11-03); its config stays on each device
+.obsidian/
+vault/.obsidian/
+
+# Node (mermaid-cli)
+node_modules/
+
+# Never commit environment files or data exports
+.env
+.env.*
+exports/
+*.xlsx
+*.sqlite
+*.db
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

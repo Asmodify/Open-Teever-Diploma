@@ -1,0 +1,34 @@
+%% D2 Deployment topology (chapter 3)
+flowchart TB
+  subgraph vultr[Vultr сервер]
+    PM2[PM2 кластер<br/>Open Tee API + Socket.IO]
+  end
+  subgraph supabase[Supabase]
+    PG[(PostgreSQL)]
+    ST[Storage, private bucket]
+    CRON[pg_cron]
+  end
+  subgraph vercel[Vercel]
+    ADM[Админ вэб<br/>admin.opendevelopment.mn]
+    FTWC[Fuel Tank Warner cloud<br/>fuel.opendevelopment.mn, hnd1]
+  end
+  subgraph office[Байгууллагын компьютер]
+    FTWL[Fuel Tank Warner локал<br/>start.bat, Excel ledger]
+  end
+  subgraph phones[Жолоочийн утас]
+    APP[Open Teever апп]
+  end
+  GPS[GPSBox]
+  EXT[ДАН, verify.mn, CallPro, Firebase, Telegram]
+  ADM --> PM2
+  APP --> PM2
+  FTWL --> PM2
+  FTWC --> PM2
+  PM2 --> PG
+  PM2 --> ST
+  CRON -- минут тутам --> FTWC
+  FTWC --> PG
+  PM2 --> GPS
+  FTWL --> GPS
+  FTWC --> GPS
+  PM2 --> EXT

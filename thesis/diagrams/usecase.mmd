@@ -1,0 +1,15 @@
+%% D3 Use case diagram by role (chapter 3)  TODO: complete from routes and the admin menu
+flowchart LR
+  driver([Жолооч])
+  dispatcher([Диспетчер])
+  accountant([Нягтлан])
+  admin([Байгууллагын админ])
+  driver --> UC1[Рейс эхлүүлэх, дуусгах]
+  driver --> UC2[Түлш цэнэглэлт баримттай бүртгэх]
+  driver --> UC3[Баримт бичиг, ДАН баталгаажуулалт]
+  dispatcher --> UC4[Даалгавар үүсгэх, хуваарилах]
+  dispatcher --> UC5[Байршил, рейс хянах]
+  accountant --> UC6[Түлшний баримт, зөрүү шалгах]
+  accountant --> UC7[Тайлан авах]
+  admin --> UC8[Хэрэглэгч, эрх, тохиргоо]
+  admin --> UC9[Түлшний анхааруулгад дүгнэлт өгөх]
