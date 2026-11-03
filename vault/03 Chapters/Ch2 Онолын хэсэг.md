@@ -1,14 +1,49 @@
 ---
-status: not started
+tags: [chapter]
+status: drafted
 weight: 20 %
 target_pages: 15–18
-thread:
-pull_request:
+thread: Finish the Open Teever thesis
+pull_request: PR_PLACEHOLDER
 as_of: 2026-11-03
+cssclasses: [ot-chapter]
 ---
 # Ch2 Онолын хэсэг
 
 Plan: [[Thesis plan#4. Chapter outline mapped to the repos]]. Draft here in Mongolian, then move the text into `thesis/main.tex`.
+
+## Written draft (2026-11-03)
+
+Drafted in full in `thesis/main.tex` (PR_PLACEHOLDER). The planning outline below is kept for history; this is what the chapter now contains.
+
+- Тээврийн парк удирдлага ба телематикийн систем
+- Түлшний мэдрэгчийн хэмжилтийн зарчим
+    - Мэдрэгчийн төрөл ба гаралт
+    - Хэмжилтийн алдааны эх үүсвэр
+    - Тогтсон түвшин ба шатаалтын дээд хязгаар
+- Олон байгууллагын вэб системийн архитектур
+    - REST API
+    - Нэвтрэлт: JWT ба сесс
+    - Байгууллагаар тусгаарлах (multi-tenancy)
+    - Транзакц ба нэгэн зэрэг ажиллах
+    - Бодит цагийн холбоо
+- Вэб клиент ба мобайл аппын архитектур
+    - Next.js админ вэб
+    - Flutter жолоочийн апп
+- Цахим баталгаажуулалт ба ДАН
+    - OAuth 2.0 authorization code урсгал
+    - ДАН
+- SMS нэг удаагийн код
+- Баримт унших хэлний загвар
+- Ижил төстэй системүүдийн харьцуулалт
+- Техникийн сорилтууд
+- Бүлгийн дүгнэлт
+
+**Figures, tables, code:** Equation 2.1 linear sensor calibration; comparison longtable of similar systems (`tab:ch2-compare`).
+
+**To do before submission:**
+
+- [ ] Advisor: is the depth of the related-work comparison enough?
 
 ## Outline
 

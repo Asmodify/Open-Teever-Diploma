@@ -1,14 +1,48 @@
 ---
-status: not started
+tags: [chapter]
+status: drafted
 weight: 25 %
 target_pages: 22–25
-thread:
-pull_request:
+thread: Finish the Open Teever thesis
+pull_request: PR_PLACEHOLDER
 as_of: 2026-11-03
+cssclasses: [ot-chapter]
 ---
 # Ch3 Арга зүй
 
 Plan: [[Thesis plan#4. Chapter outline mapped to the repos]]. Draft here in Mongolian, then move the text into `thesis/main.tex`.
+
+## Written draft (2026-11-03)
+
+Drafted in full in `thesis/main.tex` (PR_PLACEHOLDER). The planning outline below is kept for history; this is what the chapter now contains.
+
+- Хөгжүүлэлтийн арга барил
+- Бизнес процессын шинжилгээ
+    - Оролцогч талууд
+    - Рейсийн процесс
+    - Түлш цэнэглэлт ба шалгалтын процесс
+    - Хяналтын дүрмүүд
+- Хэрэглэгчийн шаардлага ба use case
+- Системийн архитектур
+    - Байршуулалтын топологи
+- Технологийн сонголт
+    - MongoDB-оос PostgreSQL рүү шилжих шийдвэр
+- Өгөгдлийн сангийн загвар
+- Алгоритмууд
+    - Хүсэлтийн транзакц ба байгууллагын хүрээ
+    - Хуваарьт ажлын lease
+    - Түлшний алдагдал илрүүлэх
+    - Цэнэглэлтийн баримтыг тулгах
+    - Рейсийн дүрмүүд
+- UML диаграмууд
+- Туршилтын орчин
+- Бүлгийн дүгнэлт
+
+**Figures, tables, code:** All 12 Mermaid diagrams placed (D1–D12); tables of roles, FR1–FR15, NFRs, technology, domains, detector thresholds; lease pseudo-code.
+
+**To do before submission:**
+
+- [ ] Re-check the ERD against the live schema after the next migration.
 
 ## Outline
 

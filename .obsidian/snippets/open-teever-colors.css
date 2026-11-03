@@ -1,0 +1,74 @@
+/* Open Teever vault colours: one colour per note group.
+   Enable in Settings → Appearance → CSS snippets → "open-teever-colors".
+   Groups: home gold · plan blue · system green · chapter purple · figures orange · sources cyan · meetings pink.
+   The group comes from the folder (file explorer), the first tag (tag pills) and cssclasses (open note). */
+
+body {
+  --ot-home: #d4a017;
+  --ot-plan: #3b82f6;
+  --ot-system: #10b981;
+  --ot-chapter: #8b5cf6;
+  --ot-figures: #f97316;
+  --ot-sources: #06b6d4;
+  --ot-meetings: #ec4899;
+}
+
+/* ---------- File explorer: coloured folder names and a side bar on their files ---------- */
+.nav-file-title[data-path="vault/00 Home.md"],
+.nav-folder-title[data-path="vault/01 Plan"],     .nav-folder-title[data-path="vault/01 Plan"] ~ .nav-folder-children .nav-file-title,
+.nav-folder-title[data-path="vault/02 System"],   .nav-folder-title[data-path="vault/02 System"] ~ .nav-folder-children .nav-file-title,
+.nav-folder-title[data-path="vault/03 Chapters"], .nav-folder-title[data-path="vault/03 Chapters"] ~ .nav-folder-children .nav-file-title,
+.nav-folder-title[data-path="vault/04 Figures"],  .nav-folder-title[data-path="vault/04 Figures"] ~ .nav-folder-children .nav-file-title,
+.nav-folder-title[data-path="vault/05 Sources"],  .nav-folder-title[data-path="vault/05 Sources"] ~ .nav-folder-children .nav-file-title,
+.nav-folder-title[data-path="vault/06 Meetings"], .nav-folder-title[data-path="vault/06 Meetings"] ~ .nav-folder-children .nav-file-title {
+  border-left: 3px solid var(--ot-c);
+}
+.nav-file-title[data-path="vault/00 Home.md"]     { --ot-c: var(--ot-home); color: var(--ot-home); font-weight: 600; }
+.nav-folder-title[data-path="vault/01 Plan"]      { --ot-c: var(--ot-plan); color: var(--ot-plan); }
+.nav-folder-title[data-path="vault/02 System"]    { --ot-c: var(--ot-system); color: var(--ot-system); }
+.nav-folder-title[data-path="vault/03 Chapters"]  { --ot-c: var(--ot-chapter); color: var(--ot-chapter); }
+.nav-folder-title[data-path="vault/04 Figures"]   { --ot-c: var(--ot-figures); color: var(--ot-figures); }
+.nav-folder-title[data-path="vault/05 Sources"]   { --ot-c: var(--ot-sources); color: var(--ot-sources); }
+.nav-folder-title[data-path="vault/06 Meetings"]  { --ot-c: var(--ot-meetings); color: var(--ot-meetings); }
+.nav-folder-title[data-path="vault/01 Plan"]     ~ .nav-folder-children { --ot-c: var(--ot-plan); }
+.nav-folder-title[data-path="vault/02 System"]   ~ .nav-folder-children { --ot-c: var(--ot-system); }
+.nav-folder-title[data-path="vault/03 Chapters"] ~ .nav-folder-children { --ot-c: var(--ot-chapter); }
+.nav-folder-title[data-path="vault/04 Figures"]  ~ .nav-folder-children { --ot-c: var(--ot-figures); }
+.nav-folder-title[data-path="vault/05 Sources"]  ~ .nav-folder-children { --ot-c: var(--ot-sources); }
+.nav-folder-title[data-path="vault/06 Meetings"] ~ .nav-folder-children { --ot-c: var(--ot-meetings); }
+
+/* ---------- Tag pills (reading view, live preview, properties) ---------- */
+a.tag[href="#home"],     .cm-tag-home,     .multi-select-pill[data-tag="home"]     { --ot-c: var(--ot-home); }
+a.tag[href="#plan"],     .cm-tag-plan,     .multi-select-pill[data-tag="plan"]     { --ot-c: var(--ot-plan); }
+a.tag[href="#system"],   .cm-tag-system,   .multi-select-pill[data-tag="system"]   { --ot-c: var(--ot-system); }
+a.tag[href="#chapter"],  .cm-tag-chapter,  .multi-select-pill[data-tag="chapter"]  { --ot-c: var(--ot-chapter); }
+a.tag[href="#figures"],  .cm-tag-figures,  .multi-select-pill[data-tag="figures"]  { --ot-c: var(--ot-figures); }
+a.tag[href="#sources"],  .cm-tag-sources,  .multi-select-pill[data-tag="sources"]  { --ot-c: var(--ot-sources); }
+a.tag[href="#meetings"], .cm-tag-meetings, .multi-select-pill[data-tag="meetings"] { --ot-c: var(--ot-meetings); }
+a.tag[href="#home"], a.tag[href="#plan"], a.tag[href="#system"], a.tag[href="#chapter"],
+a.tag[href="#figures"], a.tag[href="#sources"], a.tag[href="#meetings"] {
+  background-color: color-mix(in srgb, var(--ot-c) 18%, transparent);
+  color: var(--ot-c);
+  border: 1px solid color-mix(in srgb, var(--ot-c) 45%, transparent);
+}
+
+/* ---------- Open note: accent stripe, title and headings in the group colour ---------- */
+.ot-home     { --ot-c: var(--ot-home); }
+.ot-plan     { --ot-c: var(--ot-plan); }
+.ot-system   { --ot-c: var(--ot-system); }
+.ot-chapter  { --ot-c: var(--ot-chapter); }
+.ot-figures  { --ot-c: var(--ot-figures); }
+.ot-sources  { --ot-c: var(--ot-sources); }
+.ot-meetings { --ot-c: var(--ot-meetings); }
+
+:is(.ot-home, .ot-plan, .ot-system, .ot-chapter, .ot-figures, .ot-sources, .ot-meetings) {
+  --h1-color: var(--ot-c);
+  --h2-color: var(--ot-c);
+  --inline-title-color: var(--ot-c);
+  --blockquote-border-color: var(--ot-c);
+  --table-header-background: color-mix(in srgb, var(--ot-c) 12%, transparent);
+}
+.markdown-preview-view:is(.ot-home, .ot-plan, .ot-system, .ot-chapter, .ot-figures, .ot-sources, .ot-meetings),
+.markdown-source-view:is(.ot-home, .ot-plan, .ot-system, .ot-chapter, .ot-figures, .ot-sources, .ot-meetings) {
+  border-left: 4px solid var(--ot-c);
+}

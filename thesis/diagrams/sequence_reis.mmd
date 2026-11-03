@@ -1,17 +1,23 @@
-%% D7 Sequence: рейс start and sign-off (chapter 3)  TODO: exact endpoints from routes/task.js
+%% D7 Sequence: driver opens and sends a рейс (chapter 3). Endpoints from routes/task.js.
 sequenceDiagram
   actor D as Жолооч (апп)
   participant API as Open Tee API
   participant DB as PostgreSQL
+  participant LLM as Баримт уншигч
   participant A as Диспетчер (админ вэб)
-  D->>API: Даалгаврын заавар, аюулгүй байдлын дүрэм уншсан
-  API->>DB: task_signoffs бичих
-  D->>API: Рейс эхлүүлэх
-  API->>DB: tasks төлөв шинэчлэх, trip_histories
+  D->>API: Рейс нээх (маршрут, ачих, буулгах газар)
+  API->>DB: tasks, shifts (нэг транзакц)
   API-->>A: Socket.IO мэдэгдэл
-  loop рейсийн үед
-    D->>API: байршил, зураг, пүү
+  D->>API: POST /task/:id/signoff
+  D->>API: POST /task/:id/weigh-slip/read
+  API->>LLM: JSON схемтэй уншилт
+  LLM-->>API: дугаар, улсын дугаар, цэвэр жин
+  API-->>D: "Зөв" эсвэл "Засах"
+  D->>API: PUT /task/:id/weigh-slip
+  loop түгжигдсэн горимд 60 с тутам
+    D->>API: байршил
   end
-  D->>API: Рейс дуусгах
-  API->>DB: төлөв, падаан
-  A->>API: Баталгаажуулах
+  D->>API: POST /task/:id/pod (буулгалт, гарын үсэг)
+  API->>DB: автомат шалгалтын тэмдэглэгээ
+  A->>API: батлах эсвэл шалтгаантай буцаах
+  API-->>D: push мэдэгдэл

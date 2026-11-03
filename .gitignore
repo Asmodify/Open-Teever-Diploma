@@ -15,8 +15,12 @@ thesis/build/
 *.toc
 *.xdv
 
-# Obsidian: the repository root is the vault (K, 2026-11-03); its config stays on each device
-.obsidian/
+# Obsidian: the repository root is the vault (K, 2026-11-03); its config stays on each device,
+# except the shared colour snippet (see vault/Colors.md)
+.obsidian/*
+!.obsidian/snippets/
+.obsidian/snippets/*
+!.obsidian/snippets/open-teever-colors.css
 vault/.obsidian/
 
 # Node (mermaid-cli)

@@ -1,7 +1,9 @@
 ---
+tags: [plan]
 title: Open Teever diploma thesis plan
 as_of: 2026-11-03
 review_copy: Claude Doc "Open Tee diploma thesis plan" (same content, for inline edits)
+cssclasses: [ot-plan]
 ---
 # Open Teever diploma thesis plan
 
@@ -235,4 +237,4 @@ Still open for the advisor at gate 1: the final title wording and the department
 
 ## 10. Next step
 
-K's decisions are recorded (2026-11-03) and the repository holds the plan, the LaTeX skeleton and the sanitized system notes, all on pull request #1. Once K merges it, phase 1 starts in a thread "Write chapters 1 and 2", beginning with chapter 1 and the plan sheet; the advisor's gate 1 confirms the title wording and the dates.
+The whole thesis is drafted (2026-11-03, PR_PLACEHOLDER) and builds to PDF in CI. What is left: (1) the company confirms the numbers in [[Numbers to confirm]]; (2) K captures the seven screenshots listed in [[Figure list]]; (3) the signed permission letter is scanned into `thesis/Figures/permission_letter.pdf`; (4) the advisor reads the draft (gate 1 and onwards: title wording, dates, department names); (5) the defence deck.
