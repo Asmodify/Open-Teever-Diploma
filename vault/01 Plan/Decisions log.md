@@ -7,6 +7,8 @@ Newest first. One line per decision; link the note it changes.
 
 | Date | Decision | Why | Changes |
 | --- | --- | --- | --- |
+| 2026-11-03 | The company's internal "Open Tee систем" vault (37 notes) is not copied into this public repository; it is distilled into sanitized notes under `02 System`, with IP addresses, plates, phones, personal and client names and money removed | K's choice on the decision card; the originals stay on K's PC | [[Эх сурвалжийн зураглал]] |
+| 2026-11-03 | Production counts in the system notes are single-day figures from the company notes and must be confirmed with the company before they enter the thesis | the notes mix dates and some figures disagree (49 vs 54 tables) | [[Эх сурвалжийн зураглал]] |
 | 2026-11-03 | The Obsidian vault is `vault/` inside `Open-Teever-Diploma`; the thesis is `thesis/` | one repository for notes and source; the vault stays a plain folder of Markdown | [[Thesis plan#7. Tooling and repository setup]] |
 | 2026-11-03 | Repository `Asmodify/Open-Teever-Diploma` created by K and saved to the Claude project | all threads push there | [[Thesis plan]] |
 | 2026-11-03 | Open Development's permission to describe the system is granted (verbal); a written letter goes in the appendix | the thesis quotes real architecture and numbers | [[Permission letter template]] |
