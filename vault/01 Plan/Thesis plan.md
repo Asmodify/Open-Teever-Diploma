@@ -237,4 +237,4 @@ Still open for the advisor at gate 1: the final title wording and the department
 
 ## 10. Next step
 
-The whole thesis is drafted (2026-11-03, PR_PLACEHOLDER) and builds to PDF in CI. What is left: (1) the company confirms the numbers in [[Numbers to confirm]]; (2) K captures the seven screenshots listed in [[Figure list]]; (3) the signed permission letter is scanned into `thesis/Figures/permission_letter.pdf`; (4) the advisor reads the draft (gate 1 and onwards: title wording, dates, department names); (5) the defence deck.
+The whole thesis is drafted (2026-11-03, [PR #2](https://github.com/Asmodify/Open-Teever-Diploma/pull/2)) and builds to PDF in CI. What is left: (1) the company confirms the numbers in [[Numbers to confirm]]; (2) K captures the seven screenshots listed in [[Figure list]]; (3) the signed permission letter is scanned into `thesis/Figures/permission_letter.pdf`; (4) the advisor reads the draft (gate 1 and onwards: title wording, dates, department names); (5) the defence deck.

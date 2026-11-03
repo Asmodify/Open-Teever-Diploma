@@ -30,13 +30,13 @@ The advisor may still edit the wording; see [[Thesis plan#2. Topic framing]]. Th
 | Repository and template | skeleton pushed | this repository |
 | System map | rewritten from the repository scan, 2026-11-03 | PR #1 |
 | System notes (02 System, 7 notes) | drafted 2026-11-03 from K's vault, sanitized; waiting for K's read | PR #1 |
-| Chapter 1 | drafted 2026-11-03 | PR_PLACEHOLDER |
-| Chapter 2 | drafted 2026-11-03 | PR_PLACEHOLDER |
-| Chapter 3 | drafted 2026-11-03 | PR_PLACEHOLDER |
-| Chapter 4 | drafted 2026-11-03 | PR_PLACEHOLDER |
-| Chapter 5 | drafted 2026-11-03 | PR_PLACEHOLDER |
-| Chapter 6 | drafted 2026-11-03 | PR_PLACEHOLDER |
-| Appendix | drafted 2026-11-03; permission letter scan pending | PR_PLACEHOLDER |
+| Chapter 1 | drafted 2026-11-03 | [PR #2](https://github.com/Asmodify/Open-Teever-Diploma/pull/2) |
+| Chapter 2 | drafted 2026-11-03 | [PR #2](https://github.com/Asmodify/Open-Teever-Diploma/pull/2) |
+| Chapter 3 | drafted 2026-11-03 | [PR #2](https://github.com/Asmodify/Open-Teever-Diploma/pull/2) |
+| Chapter 4 | drafted 2026-11-03 | [PR #2](https://github.com/Asmodify/Open-Teever-Diploma/pull/2) |
+| Chapter 5 | drafted 2026-11-03 | [PR #2](https://github.com/Asmodify/Open-Teever-Diploma/pull/2) |
+| Chapter 6 | drafted 2026-11-03 | [PR #2](https://github.com/Asmodify/Open-Teever-Diploma/pull/2) |
+| Appendix | drafted 2026-11-03; permission letter scan pending | [PR #2](https://github.com/Asmodify/Open-Teever-Diploma/pull/2) |
 | Numbers to confirm | 24 rows waiting for the company | [[Numbers to confirm]] |
 | Screenshots | 7 slots waiting for PNGs | [[Figure list]] |
 | Defence deck | not started | |

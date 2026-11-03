@@ -4,7 +4,7 @@ status: drafted
 weight: 5 %
 target_pages: 5–6
 thread: Finish the Open Teever thesis
-pull_request: PR_PLACEHOLDER
+pull_request: https://github.com/Asmodify/Open-Teever-Diploma/pull/2
 as_of: 2026-11-03
 cssclasses: [ot-chapter]
 ---
@@ -14,7 +14,7 @@ Plan: [[Thesis plan#4. Chapter outline mapped to the repos]]. Draft here in Mong
 
 ## Written draft (2026-11-03)
 
-Drafted in full in `thesis/main.tex` (PR_PLACEHOLDER). The planning outline below is kept for history; this is what the chapter now contains.
+Drafted in full in `thesis/main.tex` ([PR #2](https://github.com/Asmodify/Open-Teever-Diploma/pull/2)). The planning outline below is kept for history; this is what the chapter now contains.
 
 - Судалгааны үндэслэл
 - Судалгааны зорилго
