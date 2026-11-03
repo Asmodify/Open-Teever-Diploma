@@ -16,7 +16,7 @@ Plan: [[Thesis plan#4. Chapter outline mapped to the repos]]. Draft here in Mong
 2. Туршилтын үр дүн — automated test results, manual end-to-end checks
 3. Түлшний илрүүлэлтийн үнэлгээ — dataset (months, vehicles), alerts by type, confirmed thefts against false alarms, litres, receipts with gaps; precision of theft verdicts
 4. Үйл ажиллагааны үзүүлэлт — companies, vehicles, drivers, trips, receipts, users; time saved in dispatch (estimate with the company)
-5. Хэрэглэгчийн санал — optional questionnaire results
+5. Нэвтрүүлэлт ба хэрэглэгчийн тоо — usage counts (registered and verified drivers, staff by role, active users); no questionnaire (K, 2026-11-03)
 6. Хязгаарлалт ба эрсдэл
 7. Үр дүнгийн хэлэлцүүлэг — answers to the four research questions
 
@@ -34,4 +34,4 @@ Plan: [[Thesis plan#4. Chapter outline mapped to the repos]]. Draft here in Mong
 ## Open questions
 
 - [ ] Which months of data may be used, and who signs off the numbers?
-- [ ] Survey yes or no (decision in [[Thesis plan#9. Decisions needed from K]])
+- [x] Survey: no (K, 2026-11-03); adoption is shown with usage counts

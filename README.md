@@ -7,7 +7,7 @@ Fuel Tank Warner (`OpendeGPS-fuel-notify`).
 
 | Folder | What it holds |
 | --- | --- |
-| `vault/` | Obsidian vault: the plan, the system map, one note per chapter, the figure list, sources and the advisor log. Open this folder in Obsidian as a vault. |
+| `vault/` | Notes: the plan, the system map and the sanitized system notes, one note per chapter, the figure list, sources and the advisor log. Open the repository root in Obsidian as the vault; this folder holds the notes. |
 | `thesis/` | The LaTeX thesis (`main.tex`, `MUST-Thesis.cls`), figures, Mermaid diagram sources, `references.bib` and the defence deck. |
 | `.github/workflows/thesis.yml` | Builds `thesis/main.pdf` on every push and pull request and uploads it as an artifact. |
 

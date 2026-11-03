@@ -23,11 +23,11 @@ Done means deliverables 1 to 7 exist, the PDF passes the template checks, and th
 
 ## 2. Topic framing
 
-Recommended title: **Тээврийн парк, жолооч, түлшний хяналтын нэгдсэн мэдээллийн систем (Open Teever)**, an Information Systems thesis about the whole system with fuel-loss detection as its research core. The advisor picks the final wording; two more framings are being scored by the repo scan and will be added here.
+Title, chosen by K on 2026-11-03: **Тээврийн парк, жолооч, түлшний хяналтын нэгдсэн мэдээллийн систем (Open Teever)** (candidate 1), an Information Systems thesis about the whole system with fuel-loss detection as its research core. The advisor may still edit the wording; candidates 2 and 3 stay here as fallbacks.
 
 | # | Монгол нэр | English | Emphasis |
 | --- | --- | --- | --- |
-| 1 | Тээврийн парк, жолооч, түлшний хяналтын нэгдсэн мэдээллийн систем (Open Teever) | Integrated fleet, driver and fuel management information system (Open Teever) | whole system, analysis and design; recommended |
+| 1 | Тээврийн парк, жолооч, түлшний хяналтын нэгдсэн мэдээллийн систем (Open Teever) | Integrated fleet, driver and fuel management information system (Open Teever) | whole system, analysis and design; **chosen** |
 | 2 | GPS телеметрт суурилсан түлшний хяналт бүхий дотоод тээврийн удирдлагын систем | Internal transport management system with GPS-telemetry fuel control | whole system, fuel detection as the measured result |
 | 3 | Олон байгууллагын тээврийн платформ: GPS, ДАН, SMS үйлчилгээний интеграци | Multi-tenant transport platform integrating GPS, DAN e-identity and SMS services | architecture and integration |
 
@@ -110,7 +110,7 @@ The thesis keeps the six-chapter MUST structure of the example. Implementation a
 | 2 Онолын хэсэг | fleet management and telematics, GPS fuel-sensor principles (mV readings, calibration, settling), multi-tenant web architecture (REST, JWT, Socket.IO, Postgres transactions), Flutter app architecture, OAuth2 e-identity with DAN, SMS OTP, comparison with similar systems, technical challenges | literature, READMEs, `docs/` | 15–18 |
 | 3 Арга зүй | business processes (dispatch, рейс, delivery, sign-off; refuel, receipt, GPS check), requirements and use cases per role, architecture and deployment topology, technology choice, data model (core ERD from the 49 tables), algorithms (fuel-drain detection, receipt reconciliation, scheduler lease), UML diagrams, test environment | `opendev_server` routes, controllers and migrations; warner `src/`; app `features/` | 22–25 |
 | 4 Хэрэгжилт | project structure per repo; database and company isolation; API modules (auth and OTP, drivers, vehicles, tasks, fuel, reports, GPSBox poller, DAN, Socket.IO); admin web (42 pages); driver app (login, DAN, рейс flow, receipts, weigh slips, sign-off, push); Fuel Tank Warner (poller, meter, detector, evidence, Excel, API link, cloud variant); deployment and CI; testing (30 server, 10 Flutter, 11 warner self-tests) | all four repos | 22–25 |
-| 5 Үр дүн | functions per role with screenshots; test results; fuel detection on real history (alerts by type, confirmed thefts against false alarms, litres, receipts with gaps); operational numbers (companies, vehicles, drivers, trips); user feedback; limitations; discussion | database export, warner ledger, test runs | 10–12 |
+| 5 Үр дүн | functions per role with screenshots; test results; fuel detection on real history (alerts by type, confirmed thefts against false alarms, litres, receipts with gaps); operational numbers (companies, vehicles, drivers, trips, users); limitations; discussion | database export, warner ledger, test runs | 10–12 |
 | 6 Дүгнэлт | results against objectives, novelty, limitations, future work | | 3–4 |
 | Ном зүй | at least 25 references: books, papers, standards, vendor documentation | | 2 |
 | Хавсралт | configuration samples (names only), endpoint list for 29 route groups, database schema, run guide, selected source listings, company permission letter | repos | 8–12 |
@@ -127,7 +127,7 @@ The plan sheet (ТӨГСӨЛТИЙН АЖЛЫН ТӨЛӨВЛӨГӨӨ) keeps the 
 
 ## 5. Material inventory
 
-Most of the evidence already exists in the repositories. The gaps are diagrams, clean screenshots, an anonymised data export, user feedback and the literature.
+Most of the evidence already exists in the repositories. The gaps are diagrams, clean screenshots, an anonymised data export and the literature.
 
 **Already in the repos**
 
@@ -152,13 +152,13 @@ Most of the evidence already exists in the repositories. The gaps are diagrams, 
 | 25 screenshots: 12 admin pages, 8–10 app screens, 4–5 warner views and one evidence PDF | a test company and the driver test account; blur names, phones, plates | 2 evenings |
 | Evaluation dataset: alerts by type, verdicts, litres, receipts with gaps over the recorded months | anonymised SQL export from Supabase and the warner ledger | 1 evening plus company sign-off on the numbers |
 | Operational numbers: companies, vehicles, drivers, trips, receipts, users by role | SQL counts | 1 hour |
-| User feedback from 3–5 office staff and 5–10 drivers (optional, strengthens chapter 5) | short questionnaire | 1 calendar week |
+| User survey: dropped. K decided on 2026-11-03 not to run one; adoption is shown by usage counts instead (registered and verified drivers, staff by role, active users) | SQL counts, no personal data | included in the operational numbers |
 | Literature: at least 25 references and a comparison of similar systems | search plus vendor documentation | 3 evenings |
-| Glossary of Mongolian and English terms (рейс, падаан, пүү and others) | from the UI strings | 1 hour |
+| Glossary of Mongolian, English and Chinese terms (рейс, падаан, пүү and others) and the figure-label table in [[Figure list]]: figures are rendered with Mongolian labels and can be re-rendered in English or Chinese from that table (K, 2026-11-03) | from the UI strings and the admin web's EN and ZH dictionaries | 2 hours |
 
 ## 6. Work plan
 
-About ten weeks of evenings and weekends take the thesis from an empty repository to submission. Three advisor gates fix the calendar once a deadline exists; until then the plan runs in week numbers.
+About ten weeks of evenings and weekends take the thesis from an empty repository to submission. Three advisor gates fix the calendar once a deadline exists; until then the plan runs in week numbers, and every date in the thesis (plan sheet, progress sheet, defence) is a macro in one block of `thesis/main.tex`, so they change in one place (K, 2026-11-03: keep the dates changeable).
 
 ```mermaid
 timeline
@@ -179,20 +179,20 @@ Implementation is the longest phase and the only one that needs the live system;
 | 1 Analysis | W1–W2 | process maps, requirements, use cases, comparison table; chapters 1 and 2 drafted | Write chapters 1 and 2 |
 | 2 Design | W3–W4 | architecture, deployment, core ERD, UML set, algorithm descriptions; chapter 3 | Write chapter 3 |
 | 3 Implementation | W5–W7 | per-component write-up with code excerpts, screenshots and test results; chapter 4 | Write chapter 4 |
-| 4 Evaluation | W7–W8 | anonymised data export, numbers, optional feedback; chapters 5 and 6, abstract | Evaluate and write chapters 5 and 6 |
+| 4 Evaluation | W7–W8 | anonymised data export, numbers, usage counts; chapters 5 and 6, abstract | Evaluate and write chapters 5 and 6 |
 | 5 Polish | W9–W10 | bibliography, appendices, format checks, PDF build, deck, demo rehearsal | Finish, deck and defence |
 
 Each thread ends with a pull request to this repository, and the progress sheet (ТӨГСӨЛТИЙН АЖЛЫН ЯВЦ) gets one signed row per closed phase.
 
 ## 7. Tooling and repository setup
 
-Everything lives in [Asmodify/Open-Teever-Diploma](https://github.com/Asmodify/Open-Teever-Diploma), saved to the Claude project on 2026-11-03: the `vault/` folder that opens in Obsidian and the `thesis/` folder that builds the PDF. The vault is the source of truth for notes and this plan.
+Everything lives in [Asmodify/Open-Teever-Diploma](https://github.com/Asmodify/Open-Teever-Diploma), saved to the Claude project on 2026-11-03. The repository root is the Obsidian vault (decided 2026-11-03: K already opened it there, and notes can embed the figures in `thesis/Figures` directly); `vault/` is the notes folder inside it and `thesis/` builds the PDF. Obsidian's own `.obsidian/` folder stays on each device and is git-ignored. The notes are the source of truth for this plan.
 
 | Path | Holds | Notes |
 | --- | --- | --- |
-| `vault/` | Obsidian vault: 00 Home, 01 Plan, 02 System, 03 Chapters, 04 Figures, 05 Sources, 06 Meetings | Markdown with wikilinks; open the folder as a vault in Obsidian |
+| `vault/` | notes: 00 Home, 01 Plan, 02 System, 03 Chapters, 04 Figures, 05 Sources, 06 Meetings | Markdown with wikilinks; the repository root is opened as the vault in Obsidian |
 | `vault/01 Plan/Thesis plan.md` | this plan | updated when decisions change |
-| `vault/02 System/System map.md` | the system map of the four repos | first pass now; the detailed scan replaces it |
+| `vault/02 System/` | the system map from the code and seven sanitized notes distilled from the company's own vault | [[Эх сурвалжийн зураглал]] records what was left out and why |
 | `vault/03 Chapters/` | one note per chapter with its outline, sources and status | drafting happens here before LaTeX |
 | `thesis/main.tex`, `thesis/MUST-Thesis.cls` | the thesis in one file, as in the example | XeLaTeX; Times New Roman on Windows, TeX Gyre fallback on CI |
 | `thesis/diagrams/*.mmd` to `thesis/Figures/*.png` | Mermaid sources and rendered figures | `render.sh` / `render.ps1` with the example's puppeteer config |
@@ -210,6 +210,7 @@ Permission from Open Development to describe the system is granted (K, 2026-11-0
 | --- | --- |
 | Secrets in history: the server repository was public for a while with an `.env`, an SSH key and a Firebase service account committed (rotated after 2026-10-08) | never paste configuration values; the appendix lists variable names only; the incident appears only as a generic security lesson |
 | Personal data: drivers' names, phones, DAN identity data, receipt photos, plates, client names and prices | screenshots from the test company and the driver test account; blur or replace; evaluation tables aggregated; no raw exports in the repository |
+| Published numbers | aggregate counts only and no personal data (K, 2026-11-03): how many people use the system (registered and verified drivers, staff by role), fleet size, alert counts and litres; the company is named with its permission; every count is confirmed with the company before it enters the thesis ([[Эх сурвалжийн зураглал]]) |
 | GPS provider and government services | describe protocols and data fields at the level of their public documentation; no API keys, no screenshots of provider consoles |
 | Written consent | collect a short signed letter from the company for the appendix ([[Permission letter template]]) even though verbal permission exists |
 | Time: a full-time job beside the thesis | ten-week plan with gates; chapters split into threads; one short check-in a week |
@@ -220,14 +221,18 @@ Permission from Open Development to describe the system is granted (K, 2026-11-0
 
 ## 9. Decisions needed from K
 
-- [ ] Confirm the advisor and the department (the example names Магистр Б.Мөнхбуян and Мэдээллийн технологийн тэнхим).
-- [ ] Give the deadline or defence date once known; it turns weeks into dates and fills the plan sheet.
-- [ ] Choose the title: 1, 2, 3, or an edit.
-- [ ] Say which real numbers may be published (fleet size, companies, alert counts, litres) and whether the company is named.
-- [ ] Keep `vault/` as the Obsidian folder, or move the vault to the repository root.
-- [ ] Optional user survey: yes or no.
-- [ ] Language of figure labels: Mongolian (default) or English.
+Answered by K on 2026-11-03; details in [[Decisions log]].
+
+- [x] Advisor and department: the names stay as in the example (Магистр Б.Мөнхбуян, Мэдээллийн технологийн тэнхим) and may change; they are filled in `thesis/main.tex` and marked as unconfirmed.
+- [x] Deadline: none yet; the plan stays in week numbers and every thesis date is a macro in one block of `main.tex`, so dates stay changeable.
+- [x] Title: candidate 1.
+- [x] Numbers: aggregate counts may be published, above all how many people use the system; no personal data. The company is named with its permission.
+- [x] Vault: the repository root is the Obsidian vault (recommended and applied); `vault/` is the notes folder inside it.
+- [x] User survey: no. Adoption is shown by usage counts.
+- [x] Figure labels: Mongolian; an English and Chinese label table in [[Figure list]] lets any figure be re-rendered in those languages.
+
+Still open for the advisor at gate 1: the final title wording and the department's template requirements.
 
 ## 10. Next step
 
-The repository skeleton is pushed as a pull request in the planning thread. Once K's edits are in and the pull request is merged, phase 1 starts in a thread "Write chapters 1 and 2", beginning with chapter 1 and the filled plan sheet.
+K's decisions are recorded (2026-11-03) and the repository holds the plan, the LaTeX skeleton and the sanitized system notes, all on pull request #1. Once K merges it, phase 1 starts in a thread "Write chapters 1 and 2", beginning with chapter 1 and the plan sheet; the advisor's gate 1 confirms the title wording and the dates.

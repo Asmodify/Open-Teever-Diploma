@@ -15,10 +15,9 @@ thesis/build/
 *.toc
 *.xdv
 
-# Obsidian per-device state (keep app settings, drop workspace layout)
-vault/.obsidian/workspace.json
-vault/.obsidian/workspace-mobile.json
-vault/.obsidian/cache/
+# Obsidian: the repository root is the vault (K, 2026-11-03); its config stays on each device
+.obsidian/
+vault/.obsidian/
 
 # Node (mermaid-cli)
 node_modules/
