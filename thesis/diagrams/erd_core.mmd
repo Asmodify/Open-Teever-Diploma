@@ -1,25 +1,26 @@
-%% D6 Core ERD (chapter 3)  DRAFT from table names; verify every relation against db/migrations before rendering
+%% D6 Core ERD (chapter 3). Relations checked against db/schema-meta.json and migrations 015, 020, 021.
 erDiagram
-  companies ||--o{ users : has
-  companies ||--o{ vehicles : owns
-  companies ||--o{ driver_profiles : employs
-  users ||--o| driver_profiles : "is"
-  companies ||--o{ clients : serves
-  clients ||--o{ tasks : orders
-  tasks }o--|| vehicles : uses
-  tasks }o--|| driver_profiles : "assigned to"
-  tasks ||--o{ task_signoffs : has
-  tasks ||--o{ task_weigh_slips : has
-  tasks ||--o{ fuel_entries : "refuels during"
-  vehicles ||--o| gps_devices : "tracked by"
-  gps_devices ||--o{ location_pings : reports
-  gps_devices ||--o{ fuel_samples : reports
-  vehicles ||--o{ fuel_events : "detected on"
-  fuel_entries }o--o| fuel_events : "matched to"
-  driver_profiles ||--o{ contracts : signs
-  driver_profiles ||--o{ fee_orders : receives
-  driver_profiles ||--o{ shifts : works
-  vehicles ||--o{ maintenance_requests : needs
-  vehicles ||--o{ vehicle_components : has
-  users ||--o{ notifications : receives
-  users ||--o{ audit_logs : creates
+  companies ||--o{ users : "ажилтан"
+  companies ||--o{ vehicles : "эзэмшинэ"
+  companies ||--o{ clients : "харилцагч"
+  users ||--o| driver_profiles : "профайл"
+  users ||--o{ contracts : "гэрээ"
+  users ||--o{ shifts : "ээлж"
+  rigs }o--|| vehicles : "зүтгүүр"
+  rigs }o--o| users : "жолооч"
+  tasks }o--o| users : "жолооч"
+  tasks }o--o| vehicles : "машин"
+  tasks }o--o| rigs : "бүрдэл"
+  tasks }o--o| clients : "захиалагч"
+  tasks ||--o| task_signoffs : "гарын үсэг"
+  tasks ||--o| task_weigh_slips : "пүүний баримт"
+  shifts }o--|| vehicles : "машин"
+  vehicles ||--o| gps_devices : "трекер"
+  location_pings }o--|| shifts : "байршил"
+  fuel_entries }o--|| vehicles : "цэнэглэлт"
+  fuel_entries }o--o| shifts : "ээлж"
+  fuel_events }o--|| vehicles : "GPS дохио"
+  fuel_events }o--o| gps_devices : "төхөөрөмж"
+  handover_acts }o--|| vehicles : "хүлээлцэх"
+  maintenance_requests }o--|| vehicles : "засвар"
+  fee_orders ||--o{ fee_order_signoffs : "гарын үсэг"

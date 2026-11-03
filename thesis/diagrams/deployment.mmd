@@ -1,34 +1,38 @@
-%% D2 Deployment topology (chapter 3)
+%% D2 Deployment topology (chapter 3). From vault/02 System (API сервер ба өгөгдлийн сан, Системийн тойм).
 flowchart TB
-  subgraph vultr[Vultr сервер]
-    PM2[PM2 кластер<br/>Open Tee API + Socket.IO]
+  subgraph phones[Жолоочийн утас]
+    APP[Open Teever апп<br/>Google Play, App Store]
   end
-  subgraph supabase[Supabase]
-    PG[(PostgreSQL)]
-    ST[Storage, private bucket]
-    CRON[pg_cron]
+  subgraph office[Оффисын компьютер]
+    BR[Хөтөч]
   end
   subgraph vercel[Vercel]
     ADM[Админ вэб<br/>admin.opendevelopment.mn]
-    FTWC[Fuel Tank Warner cloud<br/>fuel.opendevelopment.mn, hnd1]
+    LAND[Танилцуулга хуудас<br/>www.opendevelopment.mn]
   end
-  subgraph office[Байгууллагын компьютер]
-    FTWL[Fuel Tank Warner локал<br/>start.bat, Excel ledger]
+  subgraph vps[Компанийн виртуал сервер, Tokyo бүс]
+    CADDY[Caddy, HTTPS]
+    subgraph compose[Docker compose]
+      API[api контейнер<br/>api.opendevelopment.mn]
+      FTW[fuel контейнер, SQLite<br/>fuel.opendevelopment.mn]
+    end
   end
-  subgraph phones[Жолоочийн утас]
-    APP[Open Teever апп]
+  subgraph supa[Supabase, Tokyo бүс]
+    PG[(PostgreSQL)]
+    ST[Хаалттай bucket]
   end
-  GPS[GPSBox]
-  EXT[ДАН, verify.mn, CallPro, Firebase, Telegram]
-  ADM --> PM2
-  APP --> PM2
-  FTWL --> PM2
-  FTWC --> PM2
-  PM2 --> PG
-  PM2 --> ST
-  CRON -- минут тутам --> FTWC
-  FTWC --> PG
-  PM2 --> GPS
-  FTWL --> GPS
-  FTWC --> GPS
-  PM2 --> EXT
+  EXT[GPSBox, ДАН/ХУР, verify.mn, CallPro, Firebase, Anthropic]
+  GH[GitHub: 4 repo, main салбар]
+  APP --> CADDY
+  BR --> ADM
+  BR --> CADDY
+  ADM --> CADDY
+  CADDY --> API
+  CADDY --> FTW
+  API --> PG
+  API --> ST
+  FTW --> API
+  API --> EXT
+  FTW --> EXT
+  GH -- автомат build --> ADM
+  GH -. гараар deploy .-> compose

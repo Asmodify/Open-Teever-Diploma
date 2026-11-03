@@ -1,6 +1,8 @@
 ---
+tags: [system]
 as_of: 2026-11-03
 status: rewritten from a full read of the four repositories (server and warner code as of 2026-10-27, driver app as of 2026-10-31, admin web as of 2026-11-03); the Mongolian notes in this folder carry the newer operational facts and win where the two differ
+cssclasses: [ot-system]
 ---
 # System map — Open Teever (from the code)
 

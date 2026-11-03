@@ -1,14 +1,32 @@
 ---
-status: not started
+tags: [chapter]
+status: drafted
 weight: 15 % (with chapter 5)
 target_pages: 3–4
-thread:
-pull_request:
+thread: Finish the Open Teever thesis
+pull_request: https://github.com/Asmodify/Open-Teever-Diploma/pull/2
 as_of: 2026-11-03
+cssclasses: [ot-chapter]
 ---
 # Ch6 Дүгнэлт
 
 Plan: [[Thesis plan#4. Chapter outline mapped to the repos]]. Draft here in Mongolian, then move the text into `thesis/main.tex`.
+
+## Written draft (2026-11-03)
+
+Drafted in full in `thesis/main.tex` ([PR #2](https://github.com/Asmodify/Open-Teever-Diploma/pull/2)). The planning outline below is kept for history; this is what the chapter now contains.
+
+- Үндсэн үр дүн
+- Шинэлэг тал
+- Хязгаарлалт
+- Цаашдын хөгжүүлэлт
+- Нэгтгэл
+
+**Figures, tables, code:** Results against the five objectives, novelty, limitations, future work, closing summary.
+
+**To do before submission:**
+
+- [ ] Re-read once the † numbers are confirmed; the conclusion repeats some of them.
 
 ## Outline
 

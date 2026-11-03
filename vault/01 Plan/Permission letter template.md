@@ -1,6 +1,8 @@
 ---
+tags: [plan]
 as_of: 2026-11-03
 status: template, not yet signed
+cssclasses: [ot-plan]
 ---
 # Permission letter template (Монгол)
 

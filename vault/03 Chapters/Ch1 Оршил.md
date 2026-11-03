@@ -1,14 +1,36 @@
 ---
-status: not started
+tags: [chapter]
+status: drafted
 weight: 5 %
 target_pages: 5–6
-thread:
-pull_request:
+thread: Finish the Open Teever thesis
+pull_request: https://github.com/Asmodify/Open-Teever-Diploma/pull/2
 as_of: 2026-11-03
+cssclasses: [ot-chapter]
 ---
 # Ch1 Оршил
 
 Plan: [[Thesis plan#4. Chapter outline mapped to the repos]]. Draft here in Mongolian, then move the text into `thesis/main.tex`.
+
+## Written draft (2026-11-03)
+
+Drafted in full in `thesis/main.tex` ([PR #2](https://github.com/Asmodify/Open-Teever-Diploma/pull/2)). The planning outline below is kept for history; this is what the chapter now contains.
+
+- Судалгааны үндэслэл
+- Судалгааны зорилго
+- Судалгааны асуулт
+- Судалгааны таамаглал
+- Судалгааны ач холбогдол
+- Судалгааны хүрээ ба хязгаарлалт
+- Судалгааны аргачлалын ерөнхий загвар
+- Дипломын ажлын бүтэц
+
+**Figures, tables, code:** Table 1.1 objectives vs research questions (`tab:ch1-objectives`); hypotheses H1–H4; authorship paragraph (contractor phase, then in-house).
+
+**To do before submission:**
+
+- [ ] Confirm staff and fleet counts marked † (169 staff; 152 / 299 / 102 units) — see [[Numbers to confirm]].
+- [ ] Advisor: keep the hypothesis section? (kept, as in the example).
 
 ## Outline
 

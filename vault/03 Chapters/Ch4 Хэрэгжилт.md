@@ -1,14 +1,62 @@
 ---
-status: not started
+tags: [chapter]
+status: drafted
 weight: 35 %
 target_pages: 22–25
-thread:
-pull_request:
+thread: Finish the Open Teever thesis
+pull_request: https://github.com/Asmodify/Open-Teever-Diploma/pull/2
 as_of: 2026-11-03
+cssclasses: [ot-chapter]
 ---
 # Ch4 Хэрэгжилт
 
 Plan: [[Thesis plan#4. Chapter outline mapped to the repos]]. Draft here in Mongolian, then move the text into `thesis/main.tex`.
+
+## Written draft (2026-11-03)
+
+Drafted in full in `thesis/main.tex` ([PR #2](https://github.com/Asmodify/Open-Teever-Diploma/pull/2)). The planning outline below is kept for history; this is what the chapter now contains.
+
+- Төслийн бүтэц
+- Өгөгдлийн сангийн хэрэгжилт
+    - Migration
+    - Хүсэлтийн транзакц
+    - Файлын сан ба signed URL
+- API хэрэгжилт
+    - Бүтэц
+    - Нэвтрэлт ба OTP
+    - Жолооч, машин, бүрдэл
+    - Рейс ба пүүний баримт
+    - GPS ба бодит цагийн байршил
+    - Түлшний холбоос
+    - Мэдэгдэл, зарлал, тайлан
+    - Аюулгүй байдлын хэрэгжилт
+- Админ вэбийн хэрэгжилт
+    - Бүтэц ба цэс
+    - Эрхийн хяналт
+    - Гол хуудсууд
+    - Олон хэл ба дизайн
+    - Аюулгүй байдал
+- Жолоочийн аппын хэрэгжилт
+    - Бүтэц
+    - Рейсийн урсгал ба түгжигдсэн горим
+    - Нийцтэй байдал ба офлайн
+    - Олон хэл, дизайн, хүртээмж
+- Fuel Tank Warner-ийн хэрэгжилт
+    - Модулиуд
+    - Татах горим ба дуудлагын төсөв
+    - Илрүүлэгчийн цэвэр байдал
+    - Нотлох баримт ба Excel бүртгэл
+    - Open Tee холбоос
+    - Аюулгүй байдал
+- Байршуулалт ба CI
+- Системийн туршилт
+- Бүлгийн дүгнэлт
+
+**Figures, tables, code:** Tables of repositories, history, migrations, admin pages, app screens, Warner modules, deployment, tests and 13 system test cases; code excerpts (request transaction, `protect`, task status rules); screenshot slots S1, S16, S23.
+
+**To do before submission:**
+
+- [ ] Capture screenshots `ui_admin_dashboard.png`, `ui_app_trip.png`, `ui_warner_evidence.png` into `thesis/Figures/` (blur names, phones, plates).
 
 ## Outline
 

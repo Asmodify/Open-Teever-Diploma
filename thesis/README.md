@@ -33,7 +33,17 @@ uploads `main.pdf` as an artifact.
   `Figures/<name>_mermaid.png`, the naming the example thesis used.
 - Screenshots: `Figures/ui_*.png`, taken from a test company and the driver test account, with names,
   phones and plates blurred before they are committed.
-- Include a figure with `\includegraphics[width=0.95\textwidth]{Figures/<file>.png}`.
+- Diagrams are placed with `\diagram{<file>}{<caption>}{<label>}` (fits the page width and height).
+- Screenshots are placed with `\screenshot{<file>}{<caption>}{<label>}`. While `Figures/<file>` is missing a
+  framed placeholder box is printed, so the PDF always builds; drop the PNG in under the same name and
+  rebuild. The seven files the text expects are listed in `../vault/04 Figures/Figure list.md`.
+- The signed permission letter goes to `Figures/permission_letter.pdf`; the appendix includes it when present.
+
+## Numbers waiting for confirmation
+
+Production figures are written as `\batlah{152}` and print with a dagger (152†). The list is in
+`../vault/01 Plan/Numbers to confirm.md`. When the company has confirmed them, change the macro in the
+preamble to `\newcommand{\batlah}[1]{#1}` and delete the sentences that explain the dagger.
 
 ## Bibliography
 

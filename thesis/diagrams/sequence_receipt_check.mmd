@@ -1,14 +1,17 @@
-%% D8 Sequence: refuel receipt reconciliation (chapter 3)
+%% D8 Sequence: refuel receipt reconciliation (chapter 3). Endpoints from routes/integrations.js, logic from src/receipts.js.
 sequenceDiagram
   actor D as Жолооч (апп)
   participant API as Open Tee API
   participant W as Fuel Tank Warner
   participant G as GPSBox
   participant A as Админ вэб
-  D->>API: Цэнэглэлтийн баримт (литр, үнэ, станц, зураг)
-  W->>API: Шинэ баримтууд (минут тутам)
-  W->>G: Түлшний мэдрэгчийн түүх
-  W->>W: Тогтсон утгаар цэнэглэлтийг тулгах
-  W->>API: Танкинд орсон литр, зөрүү, төлөв
+  D->>API: Түлшний баримт (зураг, ШТС, литр)
+  W->>G: Мэдрэгчийн түүх (30 мин тутам)
+  W->>W: Тогтсон уншилтаас цэнэглэлт илрүүлэх
+  W->>API: GET /integrations/fuel-warner/receipts
+  API-->>W: Шалгагдаагүй баримтууд
+  W->>W: Том баримтаас эхэлж тулгах
+  W->>API: POST /integrations/fuel-warner/receipt-checks
+  API->>API: fuel_entries.gps_check_* шинэчлэх
   A->>API: Түлш цэнэглэлт хуудас
-  API-->>A: Баримт бүрийн GPS шалгалт
+  API-->>A: Баримт ба GPS мөр, зөрүү

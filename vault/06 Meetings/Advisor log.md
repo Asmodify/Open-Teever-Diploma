@@ -1,5 +1,7 @@
 ---
+tags: [meetings]
 as_of: 2026-11-03
+cssclasses: [ot-meetings]
 ---
 # Advisor log
 
